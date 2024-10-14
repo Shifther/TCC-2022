@@ -1,0 +1,304 @@
+\documentclass[
+article,
+12pt,				% tamanho da fonte
+%openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+oneside,			% para impressão no anverso. Oposto a twoside
+a4paper,			% tamanho do papel. 
+chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+% -- opções do pacote babel --
+english,			% idioma adicional para hifenização
+brazil				% o último idioma é o principal do documento
+]{abntex2}
+\usepackage{TCC_Renda/configs/style} % personalização da ABNTEX2 
+
+\addbibresource{TCC_Renda/pos_textual/referencias.bib} % Seus arquivos de referências
+
+%---------------------------------------------------------------------------------------------
+%--------- DADOS BÁSICOS DO TCC (Preencher todos) -------------------------------------
+%---------------------------------------------------------------------------------------------
+%Substituir 'Nome completo do autor' pelo seu nome e da sua dupla se houver.
+\autor{David de Oliveira Rafael Reis Alves} 
+
+% FIXME Substituir 'Título do trabalho' pelo título da trabalho.
+\titulo{Demonstrativo automatizado para declaração do imposto de renda com renda variável.}
+% Substituir 'Subtítulo (se houver)' pelo subtítulo da trabalho. 
+% Se não houver subtítulo, basta deletar o texto.
+\subtitulo{}
+% Substituir 'Orientador' pelo nome do seu orientador.
+\orientador{Mestre.Alciomar Hollanda}
+% Se for orientado por uma mulher, comente a linha acima e descomente a linha a seguir.
+% \orientador[Orientadora]{Orientadora, Dra.}
+% Substituir 'XXXXXX' pelo nome do seu  coorientador. Caso não tenha coorientador, comente a linha a seguir.
+\coorientador{}
+% Se for coorientado por uma mulher, comente a linha acima e descomente a linha a seguir.
+% \coorientador[Coorientadora]{Coorientadora, Dra.}
+\dia{10}
+\mes{11}
+\ano{2022}
+\local{Hortolandia-SP}
+\formacao{Engenharia da computação}
+% Se for mulher, comente a linha acima e descomente a linha a seguir.
+%\formacao{Engenheira da Computação}
+\bancaa{Mestre. Alciomar Hollanda} %Primeiro membro da banca (normalmente o orientador).
+\bancab{} %Segundo membro da banca
+
+%Resumo e palavras-chave do trabalho
+
+%---------Modelo de resumo-------------
+%           Contexto
+%          Lacuna (Gap)
+%           Propósito
+%          Metodologia
+%           Resultados
+%           Conclusões
+%--------------------------------------
+%Contexto
+\resumotcc{ Se a pessoa realizou operações envolvendo ações ou fundos imobiliários na bolsa de valores, ela obrigatoriamente precisa fazer a sua declaração de imposto, de acordo com as regras da receita federal.  
+%Gap
+ Com isso tem-se a grande possibilidade que esses valores possam ser adulterados de forma involuntária. Levando em conta que essas regras não são de conhecimento geral do publico, gerando confusão na apuracão dos resultados, por se tratarem de valores específicos e que por sua vez precisam ser calculados de forma detalhada para que não haja erros.
+%Propósito 
+Por meio de \textit{datamining} e bibliotecas disponibilizadas pela ferramenta Python, que por sua vez é uma linguagem dinâmica e de simples estruturação, pensando em automatizar os cálculos, para que o usuário tenha uma maior facilidade ao declarar essas informações no imposto de renda, apresentamos todos os resultados de acordo com a regra de bens e direitos,mostrando ao usuário sua posição de carteira referente ao ultimo dia do ano de exercício, em um relatório demonstrativo.   
+%Metodologia
+ Utilizando a linguagem Python e principalmente sua biblioteca Pandas, foi possível estruturar os dados e realizar os cálculos necessários de forma hábil e ordenada, em cima do modelo de nota de negociação das corretoras do grupo XP INVESTIMENTOS CCTVM S/A. 
+ %Resultados
+ Como resultado final entregamos ao usuário um PDF contendo todas as informações que foram consideradas neste trabalho, necessárias para que ele possa entregar sua declaração.
+ %Conclusão
+ Sabendo que durante a produção deste trabalho foi desenvolvida somente a parte estrutural e lógica, ficou em haver sua parte visual, deixando assim um espaço para futuras atualizações, tanto para atender novas regras do governo, como implementar a sua interface gráfica e aprimorar seu banco de dados.}
+\palavraschave{Bolsa; Phyton; Imposto; Datamining; Pandas.}
+
+%Abstract e keywords do trabalho
+\abstracttcc{If the person carried out operations involving stocks or real estate funds on the stock exchange, he must file his tax return, according to the rules of the Federal Revenue Service. As a result, there is a great possibility that these values can be unintentionally tampered with. Taking into account that these rules are not generally known to the public, generating confusion in the calculation of the results, as they are specific values and which, in turn, need to be calculated in detail so that there are no errors. Through datamining and libraries provided by the Python tool, which in turn is a dynamic and simple structuring language, thinking about automating the calculations, so that the user has a greater ease when declaring this information in the income tax, we present all the results according to the rule of assets and rights, showing the user his portfolio position referring to the last day of the year of exercise, in a demonstrative report. Using the Python language and mainly its Pandas library, it was possible to structure the data and perform the necessary calculations in a skillful and orderly manner, based on the trading note model of the brokers of the XP INVESTIMENTOS CCTVM S/A group. As a final result, we deliver to the user a PDF containing all the information that was considered in this work, necessary so that he can deliver his declaration. Knowing that during the production of this work only the structural and logical part was developed, it was left to have its visual part, thus leaving a space for future updates, both to meet new government rules, as well as to implement its graphical interface and improve its database.}
+\keywords{Stock Exchange; Python; Tax; Datamining; pandas.}
+
+%Agradecimentos (opcional). Caso não queira inserir, deixe em branco (\agradecimentostcc{} )
+\agradecimentostcc{}
+
+%Epígrafe (opcional). Caso não queira inserir, deixe em branco (\epigrafetcc{} )
+\epigrafetcc{}
+
+%Decatória (opcional). Caso não queira inserir, deixe em branco (\dedicatoriatcc{} )
+\dedicatoriatcc{Este trabalho é dedicado aos meus colegas de classe e aos meus queridos pais, a quem me ajudou e quem confiou em meu potencial.}
+
+%Lista de quadros
+%Além de figuras e tabelas, o TCC contém quadros? Caso afirmativo digite sim ou deixe em branco para não (\contemquadros{}).
+\contemquadros{sim}
+
+%Lista de siglas (opcional).
+%Deseja incluir lista de abreviaturas e siglas? Caso afirmativo digite sim ou deixe em branco para não (\contemsiglas{}).
+\contemsiglas{sim}
+
+%Lista de símbolos (opcional).
+%Deseja incluir lista de símbolos? Caso afirmativo digite sim ou deixe em branco para não (\contemsimbolos{}).
+\contemsimbolos{sim}
+
+%-------------------------FIM DOS DADOS BÁSICOS DO TCC--------------------------------------------
+
+
+
+
+% ajusta espaçamento das listas itemize e enumerate
+\setitemize{topsep=0pt,itemsep=0pt,leftmargin=\parindent+\labelwidth-\labelsep}
+\setenumerate{topsep=0pt,itemsep=0pt,leftmargin=\parindent+\labelwidth-\labelsep}
+
+% define a macro \Autoref to allow multiple references to be passed to \autoref
+\makeatletter
+\newcommand\Autoref[1]{\@first@ref#1,@}
+\def\@throw@dot#1.#2@{#1}% discard everything after the dot
+\def\@set@refname#1{%    % set \@refname to autoefname+s using \getrefbykeydefault
+	\edef\@tmp{\getrefbykeydefault{#1}{anchor}{}}%
+	\xdef\@tmp{\expandafter\@throw@dot\@tmp.@}%
+	\ltx@IfUndefined{\@tmp autorefnameplural}%
+	{\def\@refname{\@nameuse{\@tmp autorefname}s}}%
+	{\def\@refname{\@nameuse{\@tmp autorefnameplural}}}%
+}
+\def\@first@ref#1,#2{%
+	\ifx#2@\autoref{#1}\let\@nextref\@gobble% only one ref, revert to normal \autoref
+	\else%
+	\@set@refname{#1}%  set \@refname to autoref name
+	\@refname~\ref{#1}% add autoefname and first reference
+	\let\@nextref\@next@ref% push processing to \@next@ref
+	\fi%
+	\@nextref#2%
+	\gls
+}
+\def\@next@ref#1,#2{%
+	\ifx#2@ e~\ref{#1}\let\@nextref\@gobble% at end: print e+\ref and stop
+	\else, \ref{#1}% print  ,+\ref and continue
+	\fi%
+	\@nextref#2%
+}
+\makeatother
+
+% Cria comando para referenciar Anexo automaticamente \refanexo
+\newcommand{\refanexo}[1]{\hyperref[#1]{Anexo~\ref{#1}}}
+
+% Define comandos para tabelas que permite ajustar o tamanho da coluna e manter alinhamento C, R ou L
+%\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\centering\let\arraybackslash}m{#1}}
+\newcolumntype{R}[1]{>{\RaggedLeft\let\arraybackslash}m{#1}}
+\newcolumntype{L}[1]{>{\RaggedRight\let\arraybackslash}m{#1}}
+
+
+% ---
+% Filtering and Mapping Bibliographies
+% ---
+\DeclareSourcemap{
+	\maps[datatype=bibtex]{
+		% remove fields that are always useless
+		\map{
+			\step[fieldset=abstract, null]
+			\step[fieldset=pagetotal, null]
+			\step[fieldset=doi, null]
+		}
+		% remove URLs for types that are primarily printed
+		\map{
+			\pernottype{software}
+			\pernottype{online}
+			\pernottype{report}
+			\pernottype{techreport}
+			\pernottype{standard}
+			\pernottype{manual}
+			\pernottype{misc}
+			\step[fieldset=url, null]
+			\step[fieldset=urldate, null]
+		}
+		\map{
+			\pertype{inproceedings}
+			% remove mostly redundant conference information
+			%\step[fieldset=venue, null]
+			%\step[fieldset=eventdate, null]
+			%\step[fieldset=eventtitle, null]
+			% do not show ISBN for proceedings
+			\step[fieldset=isbn, null]
+			% Citavi bug
+			%\step[fieldset=volume, null]
+		}
+	}
+}
+% ---
+
+\preambulo
+{%
+Trabalho de Conclusão de Curso do Centro Universitário Adventista de São Paulo, do curso de Engenharia da Computação apresentado e aprovado em \imprimirformacao.
+}
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+% ---
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+% informações do PDF
+\makeatletter
+\hypersetup{
+	%pagebackref=true,
+	pdftitle={\@title}, 
+	pdfauthor={\@author},
+	pdfsubject={\imprimirpreambulo},
+	pdfcreator={LaTeX with abnTeX2},
+	pdfkeywords={ Bolsa, Imposto, Renda}, 
+	colorlinks=true,       		% false: boxed links; true: colored links
+	linkcolor=black,%blue,          	% color of internal links
+	citecolor=black,%blue,        		% color of links to bibliography
+	filecolor=black,%magenta,      		% color of file links
+	urlcolor=blue,
+	bookmarksdepth=4
+}
+\makeatother
+% ---
+
+% Definição das siglas e símbolos
+\input{TCC_Renda/pre_textual/siglas_simbolos}
+% compila a lista de abreviaturas e siglas e a lista de símbolos
+%\makenoidxglossaries 
+
+% compila o indice
+\makeindex
+
+
+% ------------------------------------------------------------------------------------------------
+% --------------------------INÍCIO DO DOCUMENTO---------------------------------------------
+% ------------------------------------------------------------------------------------------------
+\begin{document}
+	
+	% Seleciona o idioma do documento (conforme pacotes do babel)
+	%\selectlanguage{english}
+	\selectlanguage{brazil}
+	
+	% Retira espaço extra obsoleto entre as frases.
+	\frenchspacing 
+	
+	% Espaçamento 1.5 entre linhas
+	\OnehalfSpacing
+	
+	% Corrige justificação
+	%\sloppy
+	
+
+	%Elementos pré-textuais
+	% \pretextual %a macro \pretextual é acionado automaticamente no início de \begin{document}
+	% Capa, folha de rosto, ficha bibliografica, errata, folha de aprovação
+	% Dedicatória, agradecimentos, epígrafe (opcional), resumos, listas
+    \input{TCC_Renda/pre_textual/pretextual}
+
+	% Elementos textuais
+	\textual
+\newgeometry{left=30mm,right=20mm,bottom=20mm,top=30mm}
+	% 1 - Introdução
+	\include{TCC_Renda/capitulos/cap_1}
+	
+	% 2 - Metodologia
+	\include{TCC_Renda/capitulos/cap_2}
+	
+	% 3 - Referencial Bibliográfico
+	\include{TCC_Renda/capitulos/cap_3}
+	
+
+	
+
+	% 4 - Desenvolvimento 	- Conclusão
+	\include{TCC_Renda/capitulos/cap_4}
+	
+
+	\include{TCC_Renda/capitulos/cap_5}
+	
+
+	% Elementos pós-textuais
+	\postextual
+	
+	
+	% Referências bibliográficas
+	\begingroup
+	    \printbibliography[title=REFERÊNCIAS]
+	\endgroup
+	
+	
+	
+	%Reconfiguração do título para apêndices e anexos
+	 \renewcommand{\ABNTEXchapterupperifneeded}[1]{#1} 
+	\makeatletter
+	\settocpreprocessor{chapter}{%
+      \let\tempf@rtoc\f@rtoc%
+      \def\f@rtoc{%
+      \texorpdfstring{{\tempf@rtoc}}{\tempf@rtoc}}%
+      }
+    \makeatother
+	
+%tire o "%" se houver esta função em seu trabalho!!!
+
+% Apêndices
+%  \begin{apendicesenv}
+%   \partapendices* 
+%	\input{TCC_Renda/pos_textual/apendice_a}
+%\end{apendicesenv}
+
+% Anexos
+%\begin{anexosenv}
+  %\partanexos*
+%   \input{TCC_Renda/pos_textual/anexo_a}
+%\end{anexosenv}
+
+\end{document}

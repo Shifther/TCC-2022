@@ -1,0 +1,128 @@
+
+% ----------------------------------------------------------
+
+
+ \section{\textbf{Apuração dos dados}}%\label{cap:desenvolvimento}
+ 
+% ----------------------------------------------------------
+\par Nesta etapa de apuração seguiremos as chamadas da função destacada na \autoref{fig:Fig_3}, de inicio o usuário precisaria fornecer todos os dados necessários, para que seja possível a análise correta pelo sistema.
+
+\begin{figure}[ht]
+    \caption{\label{fig:Fig_3}Função Iniciar levantamento.}
+    \begin{center}
+    \resizebox{\columnwidth}{!}{
+    \includegraphics[scale = 0.745]{TCC_Renda/figuras/Funcao preencher.eps}
+    }\end{center}
+	\fonte{Autores do trabalho}
+\end{figure}
+
+\par Foi escolhido esse método de coleta por conta da própria segurança e confiabilidade que o usuário terá, sendo ele mesmo encargo de sua responsabilidade, e desligado de quaisquer bancos de dados online, onde seus dados não sairão de sua máquina durante a utilização da aplicação.
+
+
+\par Após o fornecimento dos dados o sistema irá ler os arquivos que estão em formatação PDF e Excel, em seus respectivos diretório.
+
+\par Com os dados computados é necessário fazer as formatações necessárias, para formalizar as informações para as quais serão utilizados durante os cálculos futuros.
+
+\par Após toda a formatação ele irá fazer a limpeza dos dados para que haja uma estruturação de melhor qualidade e re-colocando em variáveis suas respectivas posições assim como, cada um tem sua cadeira e cada um tem seu local correto de informação, claro com base na formatação como dito a cima no último parágrafo.
+
+\subsection{Geração do DataFrame}
+
+\par A geração do DataFrame  tera sua formatação com base nos dados extraídos da apuração dos dados, com eles os dados descritos na \autoref{tab:Tab_1}:
+
+
+
+\par Com dada lista de negócios adquiridos de cada arquivo computado os valores recolhidos passam para um vetor, sendo assim cada posição do vetor equivale a uma coluna do DataFrame, é feito um \textit{loop} para o preenchimento do dataframe de acordo com a quantidade de negócios realizados em cada nota de negociação. É gerado um Dataframe para cada ano, relacionando todos os negócios feitos naquele ano, para servir de comparativo ao do ano antecessor de suas negociações.
+
+\subsubsection{\textbf{Formatação DataFrame}}
+
+
+\par Durante a formatação de dados será realizado a primeira filtragem de separação de dados sendo ela em relação ao ano do ativo que foi negociado, isso por conta dos cálculos que são feitos de forma progressiva com base na data de Compra e data de Venda de cada ativo.
+\par Todos os índices são setados em ordem crescente, valores de texto que representam números serão formatados, alterando virgulas para pontos, pois a linguagem utilizada não permite a sintaxe de valores com virgulas.
+\par Os valores em \textit{String} (formato utilizado para textos) são passados para formato \textit{Float}(formato utilizado para números).
+
+\begin{table}[ht]
+\ABNTEXfontereduzida
+\caption{\label{tab:Tab_1}Estrutura do DataFrame utilizado molde das notas de negociação.}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+Data & Entrada/Saída & Instituição & Produto & Quantidade & Preço unitário & Valor da Operação \\ \hline
+\end{tabular}%
+}
+%\fonte{XP Investimentos 2020/2021.}
+\end{table}
+
+\par Para identificação de cada ativo, precisamos do código de negociação disponível no diretório /\textit{info}/ no arquivo de base de dados Excel.
+	
+\par O código de negociação é implementado no dataframe, de acordo com cada tipo, o código pode ser de formato prioritário ou ordinária, sendo isso uma função de alta importância para a organização dos dados, a ação prioritária teria o valor concatenado final igual a "4", já a ordinária seria o valor concatenado de final "3". Por fim as datas tem sua formatação geradas em formato,\textit{datetime}, que por sua vez tem a permissão para comparações de forma booleana, um podendo comparar com a outra para assim ter o resultado se uma é maior que a outra, e assim terminando a formatação básica do dataframe.
+
+\subsection{Ativos remanescentes}
+
+\par Caso houver ativos remanescentes do ano anterior ao ano a ser calculado no \autoref{sec:carteira} será necessário fazer uma concatenação de valores do DataFrame da carteira, com os valores a serem calculados do DataFrame do ano em questão.
+%----------------------------------------------------------
+\subsection{\textbf{Agrupamento de Dados}}
+
+\par Nesta etapa visando separar o dataframe para ser possível efetuar futuros cálculos, será feito um agrupamento dos ativos por corretora. Também agruparemos as operações de compra e venda em diferentes dataframes. Também será definido o tipo de cada ativo, sendo ele uma ação ou um fundo imobiliário.
+
+
+
+\par Os ativos serão separados por valores únicos, assim será possível iterar de forma individual em cima de todas as negociações referentes ao seu código de negociação, pois os cálculos serão realizados de forma separada para cada ativo.
+
+\subsubsection{\textbf{Agrupamento por corretora}}
+
+\par As operações feitas em uma corretora "X" não podem interferir nos cálculos de uma corretora de nome "Y", então nesta fase o sistema faz o devido agrupamento. 
+ 
+\subsubsection{\textbf{Agrupamento por compra e venda}}
+
+\par Caso a pessoa teve uma compra de 100 ações no começo do ano e por acaso comprou mais 100 durante o período do ano, é preciso calcular o preço médio das ações adquiridas, porem é necessário verificar se houve uma venda anterior a compra seguinte, que tenha alterado a posição inicial de 100 ações, isso alteraria os valores do preço médio calculado. Por isso foi dividido entre dataframes diferentes, sendo eles um de Compra outro de Venda, para assim facilitar a visibilidade das operações durante o período a ser consultado.
+
+
+
+\textbf{\subsection{Cálculos finais}}\label{sec:carteira}
+
+
+\par Neste ponto, de acordo com a \autoref{fig:Fig_5} serão realizados os cálculos de lucro, posição e preço médio dos ativos que estão sendo processados. 
+
+\par Para o cálculo do preço médio, será feito uma somatória dos valores de compra e quantidade individualmente para todas as compras com data inferior há última data de venda, 
+com isso podemos obter e calcular o preço médio, dividindo o total de compra pela quantidade total de compra.
+
+
+\par Para ser feito o cálculo do lucro, será subtraído do valor resultante da venda, o valor obtido pela multiplicação do preço médio e quantidade de venda em relação a data.
+
+\begin{figure}[h]
+    \caption{\label{fig:Fig_5}Função preço médio, posição e lucro.}
+    \begin{center}
+    \includegraphics[width=\textwidth]{TCC_Renda/figuras/defcalc.eps}
+    \fonte{Autores do trabalho}
+    \end{center}
+\end{figure}
+
+\par Já para o cálculo da posição, caso haja vendas há serem calculadas será subtraído a somatória da quantidade de compra até o momento da data de venda, caso existam compras posteriores em relação última data de venda simplesmente será feita a somatória.
+
+\section{\textbf{Resultados obtidos}}\label{sec:resultado}
+
+\par Como demonstrado na \autoref{fig:Fig_6} o informe final foi gerado com sucesso, seguindo os valores alcançados pelas etapas anteriores. O informe está composto entre os principais campos que o usuário precisará para que seja possível a declaração de seu imposto de renda.
+
+\par A estrutura foi dividida seguindo os códigos presentes no aplicativo de imposto de renda IRPF  \textcite{IRPF2022}, direcionando o usuário á informação correta de seus investimentos. O valor do "Ano" do documento será dinamicamente alterado conforme o ano do exercício da declaração. 
+
+\par O valor do campo "Empresa" está sendo buscado dentro da nossa base local, assim como o valor do campo CNPJ. Já os demais valores referentes aos demais campos são obtidos através dos DataFrames construídos durante o processo.
+
+\par Em casos em que o usuário possua uma mesma ação em diferentes corretoras o informe reunirá as informações em um só bloco demonstrativo e por fim terá um campo "TOTAL", com a somatória dos valores de posição e situação entre as duas corretoras.
+
+\section{\textbf{Considerações finais}}
+\addcontentsline{toc}{section}{Considerações finais}
+
+Foi possível alcançar o resultado esperado durante a produção deste trabalho, que por sua vez é ajudar diversos investidores, simplificando sua tarefa de fazer o lançamento do seu imposto de renda anual, que para muitos é de difícil compreensão, podendo causar muita confusão.
+Com os resultados organizados e calculados de forma autômata, diminuímos os problemas encontrados por todos os tipos de investidores, fornecendo a eles um controle do que de fato possuem em seu patrimonio para que possam transparece-lo ao governo de forma legitima, e que no futuro não se deparem com problemas com a receita federal.
+
+ Deve-se considerar a constante atualização da base de dados local utilizada no trabalho, pois diversas empresas passam a participar da bolsa abrindo o seu  patrimonio, essas informações são importantes para construção do informe final.
+Outra consideração a ser feita, os códigos de referencia do bem e ficha de declaração utilizados pelo aplicativo do governo podem ser alterados anualmente e devem ser atualizados conforme as orientações apresentadas pelo aplicativo do governo, em relação ao ano de exercício em questão.
+
+Considerando que, não foram encontrados trabalhos de referência no mesmo âmbito ao tema utilizado, teve-se uma dificuldade para reunir todo o conhecimento necessário em que foi baseado o trabalho. Tendo em conta que sua base se dá em cima da linguagem Python, foi possível a criação de Dataframes que ajudaram na obtenção dos dados tanto eles em grande, quanto em pequena escala. Também para que futuramente tenha um melhor desenvolvimento deste trabalho, pode-se acrescentar outros tipos de investimentos, e também a adaptação do código para diferentes modelos de notas de negociação, permitindo atingir cada vez mais pessoas que necessitariam exercer essas obrigações como cidadão.
+
+Mesmo sabendo que ainda não  chegamos ao resultado esperado do trabalho, por conta tanto de fatores externos, sendo eles a que não atende a todos os tipos de formulários, dito isso, o trabalho irá ficar em aberto para que possa ser implementado futuramente novas ferramentas e interfaces que atendam a máxima necessidade dos usuários.
+
+%\section{Exposição do tema ou matéria}
+
+%É a parte principal e mais extensa do trabalho. 
+%Deve apresentar a fundamentação teórica, a metodologia, os resultados e a discussão. Divide-se em seções e subseções conforme a NBR 6024 \cite{NBR6024:2012}.

@@ -1,0 +1,126 @@
+% Capa
+\imprimircapa
+
+
+% Folha de rosto
+% o * indica que haverá a ficha bibliográfica
+\imprimirfolhaderosto*
+
+
+
+% Inserir folha de aprovação
+\begin{folhadeaprovacao}
+	\OnehalfSpacing
+	\centering
+  	
+
+	\vspace*{250pt}
+	%\begin{minipage}{\textwidth}
+	Este Trabalho de Conclusão de Curso foi julgado adequado para obtenção do Título de ``\imprimirformacao'' e aprovado em sua forma final pelo Curso de Graduação em Engenharia da Computação.	\imprimirlocal, \imprimirdia~de~\imprimirmes~de~\imprimirano.\\
+	
+	\vspace*{40pt}
+    
+	
+	\vspace*{24pt}
+	\assinatura{\OnehalfSpacing \imprimirbancaa}
+	\vspace{6pt}
+	Instituição UNASP-HT\\
+	
+	\vspace*{24pt}
+	\assinatura{\OnehalfSpacing \imprimirbancab}
+	\vspace{7pt}
+	Instituição UNASP-HT\\
+	\newpage
+	
+
+	
+\end{folhadeaprovacao}
+
+% Dedicatória
+\ifnotempty{\imprimirdedicatoriatcc}{
+\begin{dedicatoria}
+	\vspace*{\fill}
+	\noindent
+	\begin{adjustwidth*}{8cm}{} 
+		\raggedright       
+		\imprimirdedicatoriatcc
+	\end{adjustwidth*}
+	\newpage
+\end{dedicatoria}
+}
+
+% Agradecimentos
+\ifnotempty{\imprimiragradecimentostcc}{
+\begin{agradecimentos}
+	\imprimiragradecimentostcc
+\end{agradecimentos}
+}
+
+% Epígrafe
+\ifnotempty{\imprimirepigrafetcc}{
+\begin{epigrafe}
+	\vspace*{\fill}
+	\imprimirepigrafetcc
+\end{epigrafe}
+}
+
+
+% Resumo
+\setlength{\absparsep}{15pt}% ajusta o espaçamento dos parágrafos do resumo
+\newgeometry{left=20mm,right=20mm,bottom=30mm,top=30mm}
+\begin{resumo}
+	\SingleSpacing
+	\imprimirresumotcc\space
+	 \textbf{Palavras-chave}:\imprimirpalavraschave
+	\begin{center}
+	    \textbf{ABSTRACT}
+	\end{center}
+	\SingleSpacing
+	\imprimirabstracttcc \space
+	\textbf{Keywords}: \imprimirkeywords
+	\clearpage
+\end{resumo}
+\restoregeometry
+
+% Abstract
+%\begin{resumo}[Abstract]
+
+%\end{resumo}
+
+
+{%hidelinks
+	\hypersetup{hidelinks}
+	
+	% inserir lista de figuras
+%	\pdfbookmark[0]{\listfigurename}{lof}
+%	\listoffigures*
+	%\cleardoublepage
+	
+	% inserir lista de quadros
+%	\ifnotempty{\verificaquadros}{
+%		\pdfbookmark[0]{\listofquadrosname}{loq}
+%		\listofquadros*
+%		\cleardoublepage
+%	}
+	
+	% inserir lista de tabelas
+%	\pdfbookmark[0]{\listtablename}{lot}
+%	\listoftables*
+%	\cleardoublepage
+	
+	% inserir lista de abreviaturas e siglas (devem ser declarados no preambulo)
+%	\ifnotempty{\verificasiglas}{
+%	\imprimirlistadesiglas
+%	}
+	
+	% inserir lista de símbolos (devem ser declarados no preambulo)
+	\ifnotempty{\verificasimbolos}{
+%	\imprimirlistadesimbolos
+	}
+	
+	% inserir o sumario
+%	\pdfbookmark[0]{\contentsname}{toc}
+%	\tableofcontents*
+%	\cleardoublepage
+	
+}%hidelinks
